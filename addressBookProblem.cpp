@@ -7,7 +7,8 @@ class addressBook{
     string firstName,lastName,address,city,state,email;
     int zip;
     long long phoneNumber;
-
+    
+    // constructor for initialize variables
     addressBook(string firstName,string lastName,string address,string city,string state,string email,int zip,long long phone){
         this->firstName = firstName;
         this->lastName = lastName;
@@ -19,6 +20,8 @@ class addressBook{
         this->phoneNumber = phone;
 
     }
+
+    // function to display contact 
     void displayContact(){
         cout<<"\ncontact details : \n";
         cout<<"name : "<<firstName<<" "<<lastName<<endl;
@@ -29,7 +32,8 @@ class addressBook{
 };
 
 int main(){
-
+     
+    // welcome message 
     cout<<"Welcome to Address Book Program\n";
 
     // contact details variables
@@ -64,6 +68,6 @@ int main(){
     cin>>phoneNumber;
 
     addressBook obj1(firstName,lastName,address,city,state,email,zip,phoneNumber);
-    
+
     obj1.displayContact();
 }
