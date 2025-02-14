@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class addressBook{
+class contact{
     public:
 
     string firstName,lastName,address,city,state,email;
@@ -9,7 +9,7 @@ class addressBook{
     long long phoneNumber;
     
     // constructor for initialize variables
-    addressBook(string firstName,string lastName,string address,string city,string state,string email,int zip,long long phone){
+    contact(string firstName,string lastName,string address,string city,string state,string email,int zip,long long phone){
         this->firstName = firstName;
         this->lastName = lastName;
         this->address = address;
@@ -67,7 +67,7 @@ int main(){
     cout<<"enter phone number \n";
     cin>>phoneNumber;
 
-    addressBook obj1(firstName,lastName,address,city,state,email,zip,phoneNumber);
+    contact p1(firstName,lastName,address,city,state,email,zip,phoneNumber);
 
     obj1.displayContact();
 }
