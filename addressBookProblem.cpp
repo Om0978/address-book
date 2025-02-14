@@ -69,5 +69,5 @@ int main(){
 
     contact p1(firstName,lastName,address,city,state,email,zip,phoneNumber);
 
-    obj1.displayContact();
+    p1.displayContact();
 }
