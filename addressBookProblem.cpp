@@ -1,4 +1,7 @@
 #include <iostream>
+#include<vector>
+#include<string>
+
 using namespace std;
 
 class contact
@@ -30,6 +33,20 @@ public:
         cout << "phone : " << phoneNumber << endl;
         cout << "email : " << email << endl;
     }
+
+    // function to edit contact
+    void editContact(string newFirstName, string newLastName, string newAddress, string newCity, string newState, string newEmail, int newZip, long long newPhoneNumber)
+    {
+        this->firstName = newFirstName;
+        this->lastName = newLastName;
+        this->address = newAddress;
+        this->city = newCity;
+        this->state = newState;
+        this->email = newEmail;
+        this->zip = newZip;
+        this->phoneNumber = newPhoneNumber;
+        cout << "\ncontact updat successfully!\n";
+    }
 };
 
 class addressBook
@@ -37,8 +54,7 @@ class addressBook
     vector<contact> contacts;
 
 public:
-
-// uc2
+    // uc2
     void addContact()
     {
         // contact details variables
@@ -73,21 +89,70 @@ public:
         cin >> phoneNumber;
 
         contact newContact(firstName, lastName, address, city, state, email, zip, phoneNumber); // call contact class constructor to make new data
-        contacts.push_back(newContact); // add contact to vector
+        contacts.push_back(newContact);                                                         // add contact to vector
     }
 
-    void display(){
-        if(contacts.empty()){
-            cout<<"\naddress book is empty !\n";
+    void display()
+    {
+        if (contacts.empty())
+        {
+            cout << "\naddress book is empty !\n";
         }
-        else{
-            for (auto i : contacts){
+        else
+        {
+            for (auto i : contacts)
+            {
 
-                cout<<"-------------------------------\n";
+                cout << "-------------------------------\n";
                 i.displayContact();
-                cout<<"-------------------------------\n";
+                cout << "-------------------------------\n";
             }
         }
+    }
+
+    // UC3
+    void editContactByName(string firstName, string lastName)
+    {
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].firstName == firstName && contacts[i].lastName == lastName)
+            {
+                cout << "\n edit contact of " << firstName << " " << lastName << endl;
+
+                string newFirstName, newLastName, newAddress, newCity, newState, newEmail;
+                int newZip;
+                long long newPhoneNumber;
+
+                cout << "enter new first name\n";
+                cin >> newFirstName;
+
+                cout << "enter new last name\n";
+                cin >> newLastName;
+
+                cout << "enter new address\n";
+                cin.ignore();
+                getline(cin, newAddress);
+
+                cout << "enter new city\n";
+                cin >> newCity;
+
+                cout << "enter new state\n";
+                cin >> newState;
+
+                cout << "enter new email\n";
+                cin >> newEmail;
+
+                cout << "enter new zip code\n";
+                cin >> newZip;
+
+                cout << "enter new phone number\n";
+                cin >> newPhoneNumber;
+
+                contacts[i].editContact(newFirstName, newLastName, newAddress, newCity, newState, newEmail, newZip, newPhoneNumber);
+                return;
+            }
+        }
+        cout << "contact not found !";
     }
 };
 
@@ -97,8 +162,38 @@ int main()
     cout << "Welcome to Address Book Program\n";
 
     addressBook addressbook;
-    addressbook.addContact();
-    addressbook.display();
+
+    int choice = -1; // choice take from user to perform multiple operations
+
+    while(choice != 0){
+        cout << "\n1. add a new contact\n";
+        cout << "2. display all contacts\n";
+        cout << "3. edit an existing contact\n";
+        cout << "0. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch(choice){
+            case 0:
+                cout<<"exit the program";
+                break;
+            case 1:
+                addressbook.addContact();
+                break;
+            case 2:
+                addressbook.display();
+                break;
+            case 3:
+                string fName,lName;
+                cout<<"\nenter the first name of contact to edit\n";
+                cin>>fName;
+                cout<<"\nenter the last name of contact to edit\n";
+                cin>>lName;
+                addressbook.editContactByName(fName,lName);
+                break;
+            
+        }
+    }
 
     return 0;
 }
