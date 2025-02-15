@@ -1,6 +1,6 @@
 #include <iostream>
-#include<vector>
-#include<string>
+#include <vector>
+#include <string>
 
 using namespace std;
 
@@ -154,6 +154,26 @@ public:
         }
         cout << "contact not found !";
     }
+
+    // UC4
+    void deleteContactByName()
+    {
+        string fName, lName;
+        cout << "\nenter the first name of contact to delete\n";
+        cin >> fName;
+        cout << "\nenter the last name of contact to delete\n";
+        cin >> lName;
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts[i].firstName == fName && contacts[i].lastName == lName)
+            {
+                contacts.erase(contacts.begin() + i);
+                cout << "\ncontact of " << fName << " " << lName << " delete successfully!\n";
+                return;
+            }
+        }
+        cout << "contact not found !";
+    }
 };
 
 int main()
@@ -165,33 +185,41 @@ int main()
 
     int choice = -1; // choice take from user to perform multiple operations
 
-    while(choice != 0){
-        cout << "\n1. add a new contact\n";
+    while (choice != 0)
+    {
+        cout << "0. Exit\n";
+        cout << "1. add a new contact\n";
         cout << "2. display all contacts\n";
         cout << "3. edit an existing contact\n";
-        cout << "0. Exit\n";
+        cout << "4. delete an existing contact\n";
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch(choice){
-            case 0:
-                cout<<"exit the program";
-                break;
-            case 1:
-                addressbook.addContact();
-                break;
-            case 2:
-                addressbook.display();
-                break;
-            case 3:
-                string fName,lName;
-                cout<<"\nenter the first name of contact to edit\n";
-                cin>>fName;
-                cout<<"\nenter the last name of contact to edit\n";
-                cin>>lName;
-                addressbook.editContactByName(fName,lName);
-                break;
-            
+        if (choice == 0)
+        {
+            cout << "exit the program";
+        }
+
+        else if (choice == 1)
+        {
+            addressbook.addContact();
+        }
+        else if (choice == 2)
+        {
+            addressbook.display();
+        }
+        else if (choice == 3)
+        {
+            string fName, lName;
+            cout << "\nenter the first name of contact to edit\n";
+            cin >> fName;
+            cout << "\nenter the last name of contact to edit\n";
+            cin >> lName;
+            addressbook.editContactByName(fName, lName);
+        }
+        else if (choice == 4)
+        {
+            addressbook.deleteContactByName();
         }
     }
 
