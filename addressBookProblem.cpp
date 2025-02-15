@@ -173,25 +173,27 @@ int main()
         cout << "Enter your choice: ";
         cin >> choice;
 
-        switch(choice){
-            case 0:
-                cout<<"exit the program";
-                break;
-            case 1:
-                addressbook.addContact();
-                break;
-            case 2:
-                addressbook.display();
-                break;
-            case 3:
-                string fName,lName;
-                cout<<"\nenter the first name of contact to edit\n";
-                cin>>fName;
-                cout<<"\nenter the last name of contact to edit\n";
-                cin>>lName;
-                addressbook.editContactByName(fName,lName);
-                break;
-            
+        if (choice == 0)
+        {
+            cout << "exit the program";
+        }
+
+        else if (choice == 1)
+        {
+            addressbook.addContact();
+        }
+        else if (choice == 2)
+        {
+            addressbook.display();
+        }
+        else if (choice == 3)
+        {
+            string fName, lName;
+            cout << "\nenter the first name of contact to edit\n";
+            cin >> fName;
+            cout << "\nenter the last name of contact to edit\n";
+            cin >> lName;
+            addressbook.editContactByName(fName, lName);
         }
     }
 
