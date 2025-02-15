@@ -38,7 +38,7 @@ class addressBook
 
 public:
 
-// uc2
+// function to take input from user and add to address book
     void addContact()
     {
         // contact details variables
@@ -76,6 +76,7 @@ public:
         contacts.push_back(newContact); // add contact to vector
     }
 
+// function to display contacts
     void display(){
         if(contacts.empty()){
             cout<<"\naddress book is empty !\n";
